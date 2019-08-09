@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Override
 	public void saveCustomer(Customer customer) {
-		cusRep.save (customer);
+		cusRep.save(customer);
 	}
 
 	@Override
