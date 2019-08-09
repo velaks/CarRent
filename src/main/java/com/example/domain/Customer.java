@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Details about client")
 @Entity
 public class Customer {
 	@Id
@@ -17,10 +21,12 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonIgnore 
 	private Long id;
+	@ApiModelProperty(notes = "Name of client")
 	private String name;
+	@ApiModelProperty(notes = "Birth year")
+	private int year;
 	@JsonIgnore 
 	private String brand;
-	private int year;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST, 
 						CascadeType.REFRESH, 
@@ -32,6 +38,18 @@ public class Customer {
 	public Customer() {
 
 	}
+	
+
+	public Customer(Long id, String name, String brand, int year, Car car) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.brand = brand;
+		this.year = year;
+		this.car = car;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

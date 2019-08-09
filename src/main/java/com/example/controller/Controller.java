@@ -1,6 +1,7 @@
 package com.example.controller;
 import java.util.Collections;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,10 @@ import com.example.domain.Customer;
 import com.example.service.CarService;
 import com.example.service.CustomerService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value = "Work with clients", description = "Deals with requests and responses")
 @RestController
 @RequestMapping(produces = "application/json", path = "/rent")
 public class Controller {
@@ -30,8 +35,10 @@ public class Controller {
 	   * Post method for adding customers and cars.
 	   */
 	@PostMapping("/add")
+	@ApiOperation(value = "Adds Customer and Car in tables",
+					notes = "Provide Customer object",
+					response = Map.class)
 	public Map<String, String> add(@RequestBody Customer customer) {
-		
 		if(customerService.ifExists(customer)) {
 			return Collections.singletonMap("response", "This client is already in journal");
 			
@@ -42,11 +49,13 @@ public class Controller {
 	}
 	
 	/**
-	   * Delete method for deleting customers from journal.
+	   * Deleting customers from journal.
 	   */
 	@DeleteMapping("delete/{name}/{brand}")
+	@ApiOperation(value = "Deletes Customer from table",
+					notes = "Provide name of customer and brand of car from URL parameters",
+					response = Map.class)
 	public Map<String, String> delete(@PathVariable String name, @PathVariable String brand) {
-		
 		/**
 		   * Checking if the DB already has such customer with rented car
 		   */

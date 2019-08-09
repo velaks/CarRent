@@ -8,13 +8,19 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Details about car")
 @Entity
 public class Car {
 	@Id @GeneratedValue
 	@Column(name = "id")
 	@JsonIgnore 
 	private Long id;
+	@ApiModelProperty(notes = "Brand of car")
 	private String brand;
+	@ApiModelProperty(notes = "Year of manufacture")
 	private int year;
 	@JsonIgnore 
 	private String client;
@@ -25,6 +31,17 @@ public class Car {
 	public Car() {
 	
 	}
+	
+
+	public Car(Long id, String brand, int year, String client) {
+		super();
+		this.id = id;
+		this.brand = brand;
+		this.year = year;
+		this.client = client;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
