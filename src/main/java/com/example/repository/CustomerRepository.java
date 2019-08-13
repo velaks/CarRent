@@ -7,6 +7,6 @@ import com.example.domain.Customer;
 public interface CustomerRepository extends JpaRepository <Customer, Long> {
 
 	boolean existsByName(String name);
-	boolean existsByYear(int year);
+	boolean existsByYear(int i);
 	Customer findByName(String name);
 }
