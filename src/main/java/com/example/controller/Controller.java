@@ -69,7 +69,6 @@ public class Controller {
 			
 			return Collections.singletonMap("response", "Client has been deleted");
 		} else {
-			
 			return Collections.singletonMap("response", "No data");
 		}
 	}
